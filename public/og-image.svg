@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#161616"/>
+  <rect x="54" y="54" width="1092" height="522" fill="none" stroke="#B8A48B" stroke-width="2"/>
+  <text x="90" y="170" fill="#B8A48B" font-family="Georgia, serif" font-size="28" letter-spacing="8">VADODARA · GUJARAT</text>
+  <text x="90" y="315" fill="#FAF9F6" font-family="Georgia, serif" font-size="84">The Tulip Touch</text>
+  <text x="90" y="400" fill="#FAF9F6" font-family="Arial, sans-serif" font-size="34" letter-spacing="10">CAFÉ</text>
+  <path d="M1010 476V365M1008 376c-44 0-70-26-62-74 34 5 56 27 62 59 6-32 28-54 62-59 8 48-18 74-62 74Z" fill="#B8A48B"/>
+</svg>
