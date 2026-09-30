@@ -23,14 +23,13 @@ export const siteConfig = {
     'Akota, Vadodara',
     'Gujarat 390007',
   ],
-  googleMapsUrl: '',
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=The+Tulip+Touch+Cafe%2C+opposite+Galleria+Mall%2C+Prafull+Society%2C+Tarangan+Society%2C+Akota%2C+Vadodara%2C+Gujarat+390007',
+  mapEmbedUrl: 'https://www.google.com/maps?q=The+Tulip+Touch+Cafe%2C+opposite+Galleria+Mall%2C+Akota%2C+Vadodara%2C+Gujarat+390007&output=embed',
   canonicalUrl: '',
   seoTitle: 'The Tulip Touch Café | Coffee Meets Art in Vadodara',
   seoDescription:
     'Discover The Tulip Touch Café in Vadodara: monochrome interiors, coffee, desserts, mocktails, shakes, and a menu shaped for lingering conversations.',
-  ogImage: '/og-image.svg',
-  contactNote:
-    'Phone, WhatsApp, hours, and map details are ready to be added in this configuration file.',
+  ogImage: '/og-image.jpg',
 } as const;
 
 export const hasPhone = siteConfig.phoneNumber.trim().length > 0;

@@ -88,7 +88,6 @@ The site uses a remote font import for Cormorant Garamond and DM Sans when avail
 - `app/layout.tsx` contains title, description, Open Graph, X card, keyword, and favicon metadata.
 - `app/page.tsx` contains factual CafeOrCoffeeShop structured data.
 - `app/sitemap.ts` and `app/robots.ts` use `NEXT_PUBLIC_SITE_URL` when configured.
-- `public/manus-routes.json` declares the current root route for the Webdev project.
 
 ## Environment variables
 
