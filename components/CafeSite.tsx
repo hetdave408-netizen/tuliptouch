@@ -14,14 +14,13 @@ function ReviewsStrip() {
   const scroll = (dir: number) => track.current?.scrollBy({ left: dir * Math.max(300, (track.current?.clientWidth ?? 600) * 0.8), behavior: 'smooth' });
   return (
     <div className="review-strip reveal">
-      <div className="review-strip-head"><span>Scroll to read</span><div><button type="button" aria-label="Previous reviews" onClick={() => scroll(-1)}>←</button><button type="button" aria-label="Next reviews" onClick={() => scroll(1)}>→</button></div></div>
+      <div className="review-strip-head"><span>Google reviews · scroll to read</span><div><button type="button" aria-label="Previous reviews" onClick={() => scroll(-1)}>←</button><button type="button" aria-label="Next reviews" onClick={() => scroll(1)}>→</button></div></div>
       <div className="review-track" ref={track} tabIndex={0} role="region" aria-label="Guest reviews">
         {guestReviews.map((r, i) => (
           <figure className="review-card" key={i}>
             <span className="review-num">{String(i + 1).padStart(2, '0')}</span>
-            {r.rating ? <div className="review-stars" aria-label={`${r.rating} out of 5`}>{'★'.repeat(r.rating)}</div> : null}
-            <blockquote>{r.text}</blockquote>
-            <figcaption>{r.author ?? 'Guest feedback'}</figcaption>
+                        <blockquote>{r.text}</blockquote>
+            <figcaption>{r.author}{r.meta ? <small> · {r.meta}</small> : null}</figcaption>
           </figure>
         ))}
       </div>
