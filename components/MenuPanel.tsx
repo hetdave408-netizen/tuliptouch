@@ -24,7 +24,6 @@ export function MenuPanel() {
             <div className="menu-row-copy">
               <div className="menu-row-title"><h3>{item.name}</h3>{item.featured ? <span className="mini-tag">Featured</span> : null}</div>
               <p>{item.description}</p>
-              <span className="veg-label"><span aria-hidden="true">◦</span> Vegetarian</span>
             </div>
             <div className="menu-row-meta"><span className="menu-price">₹{item.price}</span><span className="menu-category">{item.category}</span><Icon name="spark" size={16} /></div>
           </article>

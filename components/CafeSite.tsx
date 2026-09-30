@@ -1,13 +1,33 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { galleryItems } from '@/data/gallery';
 import { featuredMenu } from '@/data/menu';
 import { hasOpeningHours, hasPhone, hasWhatsApp, getPhoneHref, getWhatsAppHref, siteConfig } from '@/data/siteConfig';
-import { reviewSummary } from '@/data/reviews';
+import { guestReviews, reviewSummary } from '@/data/reviews';
 import { Icon } from './Icon';
 import { Lightbox } from './Lightbox';
 import { MenuPanel } from './MenuPanel';
+
+function ReviewsStrip() {
+  const track = useRef<HTMLDivElement>(null);
+  const scroll = (dir: number) => track.current?.scrollBy({ left: dir * Math.max(300, (track.current?.clientWidth ?? 600) * 0.8), behavior: 'smooth' });
+  return (
+    <div className="review-strip reveal">
+      <div className="review-strip-head"><span>Scroll to read</span><div><button type="button" aria-label="Previous reviews" onClick={() => scroll(-1)}>←</button><button type="button" aria-label="Next reviews" onClick={() => scroll(1)}>→</button></div></div>
+      <div className="review-track" ref={track} tabIndex={0} role="region" aria-label="Guest reviews">
+        {guestReviews.map((r, i) => (
+          <figure className="review-card" key={i}>
+            <span className="review-num">{String(i + 1).padStart(2, '0')}</span>
+            {r.rating ? <div className="review-stars" aria-label={`${r.rating} out of 5`}>{'★'.repeat(r.rating)}</div> : null}
+            <blockquote>{r.text}</blockquote>
+            <figcaption>{r.author ?? 'Guest feedback'}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -115,7 +135,7 @@ export function CafeSite() {
         <section className="section section-ink reviews-section" id="reviews">
           <div className="reviews-intro reveal"><SectionLabel number="06">The word around it</SectionLabel><h2>What the room<br /><em>leaves behind.</em></h2><p>Guests talk about the monochrome interiors, the photo-friendly corners, the cozy ambience, and the food, coffee and service.</p></div>
           <div className="rating-block reveal"><div className="rating-value">{reviewSummary.rating}</div><div className="rating-rule" /><div className="rating-count">{reviewSummary.reviewCount}<span>Guest rating</span></div></div>
-          <div className="theme-grid">{reviewSummary.themes.map((theme, index) => <div className="theme-item reveal" key={theme}><span>0{index + 1}</span><p>{theme}</p></div>)}</div>
+          <ReviewsStrip />
         </section>
 
         <section className="section section-location" id="contact">

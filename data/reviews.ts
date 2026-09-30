@@ -9,3 +9,9 @@ export const reviewSummary = {
     'Food, coffee, service, and pricing',
   ],
 };
+
+export type GuestReview = { text: string; author?: string; rating?: number };
+
+// Paste real guest reviews here (text, author, rating) and they appear in the scrolling strip.
+// Until then the strip shows the themes guests mention most.
+export const guestReviews: GuestReview[] = reviewSummary.themes.map((text) => ({ text }));
