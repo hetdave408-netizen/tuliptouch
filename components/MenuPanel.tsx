@@ -1,23 +1,46 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { menuCategories, menuItems, type MenuCategory } from '@/data/menu';
+import { gsap, prefersReducedMotion, registerGsap } from '@/lib/gsap';
 import { Icon } from './Icon';
 
 export function MenuPanel() {
   const [activeCategory, setActiveCategory] = useState<'All' | MenuCategory>('All');
+  const list = useRef<HTMLDivElement>(null);
+  const firstRun = useRef(true);
   const visibleItems = useMemo(() => activeCategory === 'All' ? menuItems : menuItems.filter((item) => item.category === activeCategory), [activeCategory]);
+
+  // Rows rise in when the list first scrolls into view, and again each time the filter changes.
+  useEffect(() => {
+    registerGsap();
+    const el = list.current;
+    if (!el || prefersReducedMotion()) return;
+    const rows = el.querySelectorAll('.menu-row');
+    const first = firstRun.current;
+    firstRun.current = false;
+    const tween = gsap.fromTo(
+      rows,
+      { autoAlpha: 0, y: 22 },
+      {
+        autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.045, clearProps: 'transform,opacity,visibility',
+        ...(first ? { scrollTrigger: { trigger: el, start: 'top 88%', once: true } } : {}),
+      },
+    );
+    return () => { tween.scrollTrigger?.kill(); tween.kill(); gsap.set(rows, { clearProps: 'all' }); };
+  }, [activeCategory]);
 
   return (
     <div className="menu-panel">
-      <div className="menu-filter" role="tablist" aria-label="Filter menu by category">
+      <div className="menu-filter" role="group" aria-label="Filter menu by category">
         {menuCategories.map((category) => (
-          <button key={category} type="button" role="tab" aria-selected={activeCategory === category} className={activeCategory === category ? 'is-active' : ''} onClick={() => setActiveCategory(category)}>
+          <button key={category} type="button" aria-pressed={activeCategory === category} className={activeCategory === category ? 'is-active' : ''} onClick={() => setActiveCategory(category)}>
             {category}
           </button>
         ))}
       </div>
-      <div className="menu-list" aria-live="polite">
+      <p className="visually-hidden" role="status">{`Showing ${visibleItems.length} ${activeCategory === 'All' ? 'menu items' : activeCategory + ' items'}`}</p>
+      <div className="menu-list" ref={list}>
         {visibleItems.map((item, index) => (
           <article className="menu-row" key={item.name}>
             <span className="menu-row-number">{String(index + 1).padStart(2, '0')}</span>

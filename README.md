@@ -8,6 +8,8 @@ A premium, frontend-only one-page website for **The Tulip Touch Café** in Vadod
 - React 19
 - TypeScript
 - Plain CSS with a small design-token system
+- GSAP (ScrollTrigger, SplitText) and Lenis for motion and smooth scrolling
+- Self-hosted fonts via Fontsource (no render-blocking font request)
 - pnpm 11
 - No backend, database, CMS, authentication, account system, form handler, or external API
 
@@ -109,3 +111,21 @@ public/               Brand mark, favicon, social image, local visual studies
 ideas.md              Approved Editorial Gallery Café design brief
 README.md             This guide
 ```
+
+## Motion
+
+All animation lives in `components/motion.ts`; pieces are switched on with `data-*` attributes in `components/CafeSite.tsx`.
+
+| Attribute | Effect |
+| --- | --- |
+| `data-split="lines"` | Heading lines rise out of a mask on scroll |
+| `data-split="scrub"` | Words fill in as you scroll |
+| `data-fade` | Fade-up, staggered when several arrive together |
+| `data-parallax` / `data-clip` | Slow image parallax / opening mask |
+| `data-count` | Number counts up once |
+| `data-magnetic` | Button leans toward the mouse (mouse only) |
+| `data-cursor="View"` | Cursor label (mouse only) |
+
+The photo strips under the About section slide in opposite directions with scroll (`components/PhotoStrips.tsx`). On screens 1024px and wider the featured menu items stack as cards, each receding as the next slides over it. The gallery pins and travels sideways on screens 1024px and wider; on phones and tablets it is a normal swipeable row.
+
+Visitors who prefer reduced motion get no smooth scroll, no intro and no entrance animation, and the page is fully readable. The first-visit intro plays once per browser session.
