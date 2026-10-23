@@ -258,3 +258,8 @@ address strong { margin-bottom: 8px; font-size: 22px; font-weight: 800; }
 .sm-panel-itemLabel, .staggered-menu-panel .sm-panel-item { font-size: clamp(40px, 6.2vw, 84px) !important; }
 .sm-panel-itemLabel, .staggered-menu-panel .sm-panel-item { font-size: clamp(28px, 3.6vw, 52px) !important; }
 @media (max-width: 700px) { .h2 .scroll-float-text, .h2 .h2-text, .h2-static, .pour-copy h2 { font-size: clamp(32px, 9.4vw, 60px); } .scroll-float-text { font-size: clamp(32px, 9.4vw, 60px); } }
+
+/* Review progress line: thin pale track, filled portion and a dot at the head (khemji reference) */
+.review-line { position: sticky; top: 14vh; align-self: start; width: 2px; height: 72vh; margin-left: 13px; overflow: visible; background: rgba(250,249,246,.28); --p: 0; }
+.review-line .rl-fill { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--p) * 100%); background: var(--paper); }
+.review-line .rl-dot { position: absolute; left: 50%; top: calc(var(--p) * 100%); width: 12px; height: 12px; margin: -6px 0 0 -6px; background: var(--paper); border-radius: 50%; box-shadow: 0 0 0 4px rgba(250,249,246,.18); }

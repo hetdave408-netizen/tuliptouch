@@ -37,8 +37,8 @@ export function initPageMotion(root: HTMLElement) {
       gsap.fromTo(el, { clipPath: 'inset(12% 8% 12% 8%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 35%', scrub: true } });
     });
     all('[data-review-stack]').forEach((stack) => {
-      const fill = stack.querySelector<HTMLElement>('[data-review-line]');
-      if (fill) gsap.fromTo(fill, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: stack, start: 'top 60%', end: 'bottom 70%', scrub: 0.4 } });
+      const line = stack.querySelector<HTMLElement>('[data-review-line]');
+      if (line) ScrollTrigger.create({ trigger: stack, start: 'top 55%', end: 'bottom 70%', scrub: 0.4, onUpdate: (self) => line.style.setProperty('--p', String(self.progress)) });
       stack.querySelectorAll<HTMLElement>('[data-review]').forEach((card) => {
         gsap.from(card, { y: 70, opacity: 0, scale: 0.96, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 90%', once: true } });
       });
