@@ -6,6 +6,8 @@ import { galleryItems } from '@/data/gallery';
 import { featuredMenu } from '@/data/menu';
 import { reviewSummary } from '@/data/reviews';
 import { initPageMotion } from './motion';
+import { Loader } from './Loader';
+import { Cursor } from './Cursor';
 import { SmoothScroll } from './SmoothScroll';
 import { WalkThrough } from './WalkThrough';
 import { PourYourOwn } from './PourYourOwn';
@@ -45,9 +47,12 @@ export function CafeSite() {
   return (
     <div className="site" ref={shell}>
       <a className="skip-link" href="#main">Skip to content</a>
+      <Loader />
+      <Cursor />
+      <div className="grain" aria-hidden="true" />
       <SmoothScroll />
       <div className="progress" data-progress aria-hidden="true" />
-      <StaggeredMenu isFixed position="right" items={nav} displayItemNumbering displaySocials={false} logoUrl="/brand-mark.svg" colors={['#292524', '#0c0a09']} menuButtonColor="#fafaf9" openMenuButtonColor="#fafaf9" accentColor="#e0b050" />
+      <StaggeredMenu isFixed position="right" items={nav} displayItemNumbering displaySocials socialItems={[{ label: 'Get directions', link: siteConfig.googleMapsUrl }, ...(hasWhatsApp ? [{ label: 'WhatsApp', link: wa }] : []), ...(hasPhone ? [{ label: 'Call', link: tel }] : [])]} logoUrl="/brand-mark.svg" colors={['#e0b050', '#a16207']} menuButtonColor="#fafaf9" openMenuButtonColor="#fafaf9" accentColor="#e0b050" />
 
       <main id="main" tabIndex={-1}>
         <section className="hero" id="home" data-hero>
@@ -88,10 +93,10 @@ export function CafeSite() {
           <ScrollFloat containerClassName="h2" textClassName="h2-text" splitBy="words" scrollStart="top bottom-=5%" scrollEnd="top center">Made for the in-between moments.</ScrollFloat>
           <p className="lede" data-reveal>Artistic interiors, casual plates, cold coffee, desserts, mocktails and shakes. A visual language that continues from the room to the menu.</p>
           <div className="xp-grid">
-            <figure className="xp-img" data-clip><img src="/images/interior-lounge.jpg" alt="Black and white lounge with a chandelier and painted ornate walls" width={1080} height={716} loading="lazy" /><figcaption>01 / Artistic interiors</figcaption></figure>
+            <figure className="xp-img" data-clip><img src="/images/interior-lounge.jpg" alt="Black and white lounge with a chandelier and painted ornate walls" width={1080} height={716} loading="lazy" data-depth="9" /><figcaption>01 / Artistic interiors</figcaption></figure>
             <SpotlightCard className="xp-card" spotlightColor="rgba(224,176,80,0.28)" theme="dark"><span className="xp-n">02</span><h3>The rhythm</h3><ul><li>Monochrome aesthetic</li><li>Photo-friendly corners</li><li>Coffee &amp; conversation</li><li>Desserts &amp; drinks</li></ul></SpotlightCard>
             <SpotlightCard className="xp-card xp-quote" spotlightColor="rgba(224,176,80,0.28)" theme="dark"><Icon name="spark" size={24} /><blockquote>“A little room for coffee, culture, and the conversations that happen between them.”</blockquote><span>The Tulip Touch</span></SpotlightCard>
-            <figure className="xp-img xp-img--small" data-clip><img src="/images/logo-wall.jpg" alt="Tulip Touch Café emblem on an illustrated iron-gate wall" width={1080} height={609} loading="lazy" /><figcaption>03 / The emblem</figcaption></figure>
+            <figure className="xp-img xp-img--small" data-clip><img src="/images/logo-wall.jpg" alt="Tulip Touch Café emblem on an illustrated iron-gate wall" width={1080} height={609} loading="lazy" data-depth="9" /><figcaption>03 / The emblem</figcaption></figure>
           </div>
         </section>
 

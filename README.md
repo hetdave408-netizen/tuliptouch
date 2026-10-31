@@ -1,4 +1,15 @@
-# The Tulip Touch Café — v5
+# The Tulip Touch Café — v6
+
+v6 adds a cinematic motion layer on top of the v5 design — nothing about the café's content, menu, prices, reviews or the "Pour your own" coffee feature changed:
+
+- **First-visit intro curtain** — gold counter 000→100, then a two-stage ink wipe (once per session; skipped for reduced motion and returning visitors).
+- **Custom gold cursor** (desktop) — instant dot + lagging ring that swells over links and buttons.
+- **Horizontal gallery film-strip** (desktop) — the gallery pins and scrubs sideways with a progress line; mobile and reduced motion keep the responsive grid.
+- **Cinematic hero exit** — the facade keeps drifting while the copy blurs, shrinks and sinks away.
+- **Depth parallax, velocity skew, staggered menu rows** — deeper scroll feel throughout, plus a film-grain overlay.
+
+---
+# v5 notes
 
 Next.js 15 (App Router), TypeScript, plain CSS. Deploys on Vercel (`pnpm install && pnpm build`).
 

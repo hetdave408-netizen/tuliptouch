@@ -28,9 +28,9 @@ export function MenuSection() {
         <FlowingMenu items={flow} activeIndex={active} onItemClick={(_, i) => setActive(i)} ariaLabel="Menu categories" textColor="#fafaf9" bgColor="#0c0a09" marqueeBgColor="#fafaf9" marqueeTextColor="#0c0a09" borderColor="rgba(250,250,249,.25)" />
       </div>
       <p className="visually-hidden" role="status">{`Showing ${items.length} ${category === 'All' ? 'menu items' : category + ' items'}`}</p>
-      <div className="menu-list">
+      <div className="menu-list" data-skew>
         {items.map((item, i) => (
-          <article className="menu-row" key={item.name}>
+          <article className="menu-row" data-menu-row key={item.name}>
             <span className="menu-row-n">{String(i + 1).padStart(2, '0')}</span>
             <div className="menu-row-copy"><h3>{item.name}{item.featured ? <span className="tag">Featured</span> : null}</h3><p>{item.description}</p></div>
             <div className="menu-row-meta"><strong>₹{item.price}</strong><span>{item.category}</span></div>

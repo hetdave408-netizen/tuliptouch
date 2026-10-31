@@ -33,7 +33,7 @@ export const viewport: Viewport = { themeColor: '#0c0a09', width: 'device-width'
  * and flags the first visit of a session for the short intro. A timeout guarantees the page can never
  * stay hidden if scripts fail. Reduced-motion visitors get neither class.
  */
-const preflight = `(function(){try{var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('js-motion');}setTimeout(function(){d.classList.remove('js-motion')},4000)}catch(e){}})();`;
+const preflight = `(function(){try{var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('js-motion');}if(sessionStorage.getItem('tulip-booted-v6')){d.classList.add('boot-skip');}setTimeout(function(){d.classList.remove('js-motion')},4000)}catch(e){}})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

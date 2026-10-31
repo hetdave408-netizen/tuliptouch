@@ -14,6 +14,7 @@ export const smoothScroll = {
   scrollTo: (target: number | string | HTMLElement) => {
     if (instance) instance.scrollTo(target as never);
     else if (typeof target === 'number') window.scrollTo({ top: target });
+    else if (typeof target !== 'string') target.scrollIntoView();
   },
 };
 
